@@ -59,7 +59,7 @@ Trained weights are written to **`{model-dir}/model.keras`** (plus `class_names.
 | **TensorFlow version** | Pinned **`tensorflow<2.19`** so **`tensorflow-metal` 1.2.x** can load (TF 2.19+ breaks that plugin). After dependency changes: `rm -rf .venv && uv sync --extra metal`. |
 | **`DYLD_LIBRARY_PATH`** | Do **not** point it at Homebrew Expat while using Metal; it breaks resolution of TensorFlow’s own `.so` files. `unset DYLD_LIBRARY_PATH` before training. |
 | **Import crash** (`mutex` / protobuf) | Use a **clean env** (`uv sync` or a small venv). Huge Conda stacks with **PyArrow** often clash with TF 2.20+; try `pip uninstall -y pyarrow` if safe, or see `pyproject.toml` constraints. |
-| **Stability** | The training script re-execs once on macOS with `PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=python`. For the old single-thread workaround: **`--cpu-only`** or `ASL_TF_STABLE=1`. |
+| **Stability** | The training script re-execs once on macOS with `PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=python`. For the old single-thread workaround (much slower): **`--cpu-only`** or `ASL_TF_STABLE=1`. |
 
 ## Evaluate (CLI)
 
@@ -83,6 +83,12 @@ uv run python src/train_asl.py realtime --model-dir models/asl_mobilenetv2 --use
 
 Open **`notebooks/ASL_Evaluation.ipynb`** and run all cells. Point **`MODEL_DIR`** at your saved model (defaults assume `../models/asl_model/`). Test images: **`data/asl_processed/test/`**.
 
-## zsh tip
-
-Keep **`--data-dir …`** and **`--model-dir …`** on the **same line** as the flag values; a stray line break can leave an empty argument.
+## Built on 
+| Item | Specification |
+|------|----------------|
+| **Model** | MacBook Pro |
+| **SoC** | Apple M4 |
+| **CPU** | 10 cores (4 performance, 6 efficiency) |
+| **Memory** | 16 GB unified |
+| **GPU** | Apple M4 integrated, 10 GPU cores, **Metal 4** |
+| **OS** | macOS 26.2 (build 25C56) |
