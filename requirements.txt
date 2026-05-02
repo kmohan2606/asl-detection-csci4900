@@ -1,0 +1,9 @@
+# Legacy: install with `pip install -r requirements.txt`
+# Preferred: use `uv` + pyproject.toml (see README)
+tensorflow>=2.16,<2.19
+numpy>=1.26
+opencv-python>=4.9
+scikit-learn>=1.4
+matplotlib>=3.8
+seaborn>=0.13
+mediapipe>=0.10.14

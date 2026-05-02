@@ -1,0 +1,21 @@
+[project]
+name = "asl-detection"
+version = "0.1.0"
+description = "ASL hand gesture classification (A–Z, 0–9)"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    # Cap below 2.19: tensorflow-metal 1.2.x expects legacy wheel layout (_pywrap_tensorflow_internal);
+    # TF 2.19+ breaks Metal plugin loading until Apple ships a matching tensorflow-metal.
+    "tensorflow>=2.16,<2.19",
+    "numpy>=1.26",
+    "opencv-python>=4.9",
+    "scikit-learn>=1.4",
+    "matplotlib>=3.8",
+    "seaborn>=0.13",
+    "mediapipe>=0.10.14",
+]
+
+[project.optional-dependencies]
+# Apple Silicon GPU: `uv sync --extra metal` (Python 3.12). Pair with TF <2.19 (see tensorflow dep).
+metal = ["tensorflow-metal>=1.2,<2"]

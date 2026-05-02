@@ -1,0 +1,20 @@
+# Local datasets and generated artifacts
+data/
+notebooks/reports/
+
+# Saved training outputs (large Keras weights; bloats repo / history without Git LFS)
+models/
+
+# Local / assistant scratch notes (not for version control)
+task.md
+task.MD
+CLAUDE.md
+claude.md
+
+# Archives (anywhere in the repo)
+*.zip
+
+# Python / uv
+.venv/
+
+# Keep pyproject.toml and uv.lock committed — do not ignore *.toml globally.
